@@ -1,83 +1,37 @@
 import strawberry
-from strawberry.django import auto
+from strawberry.extensions.query_depth_limiter import QueryDepthLimiter
+from typing import List
 
-# Import your Django models
-from .models import (
-    OrgDepartment,
-    OrgPersonnelGroup,
-    OrgTypeofPersonnel,
-    OrgPosCategory,
-    OrgDeptCategory,
-    OrgPosition,
-    OrgProvisionProcedure,
-    OrgQualifications,
-    OrgRemunerationItem,
-    OrgSalaryStructure,
-)
+from .types import *
+from .resolvers.departmet_resolver import *
+from .resolvers.position_resolver  import *
+from .models import *
 
-# Define your Strawberry types
-@strawberry.type
-class OrgDepartmentType(auto.ModelType):
-    class Meta:
-        model = OrgDepartment
 
-@strawberry.type
-class OrgPersonnelGroupType(auto.ModelType):
-    class Meta:
-        model = OrgPersonnelGroup
-
-@strawberry.type
-class OrgTypeofPersonnelType(auto.ModelType):
-    class Meta:
-        model = OrgTypeofPersonnel
-
-@strawberry.type
-class OrgPosCategoryType(auto.ModelType):
-    class Meta:
-        model = OrgPosCategory
-
-@strawberry.type
-class OrgDeptCategoryType(auto.ModelType):
-    class Meta:
-        model = OrgDeptCategory
-
-@strawberry.type
-class OrgPositionType(auto.ModelType):
-    class Meta:
-        model = OrgPosition
-
-@strawberry.type
-class OrgProvisionProcedureType(auto.ModelType):
-    class Meta:
-        model = OrgProvisionProcedure
-
-@strawberry.type
-class OrgQualificationsType(auto.ModelType):
-    class Meta:
-        model = OrgQualifications
-
-@strawberry.type
-class OrgRemunerationItemType(auto.ModelType):
-    class Meta:
-        model = OrgRemunerationItem
-
-@strawberry.type
-class OrgSalaryStructureType(auto.ModelType):
-    class Meta:
-        model = OrgSalaryStructure
-
-# Define your queries
 @strawberry.type
 class Query:
-    @strawberry.field
-    def get_org_department(self, id: strawberry.ID) -> OrgDepartmentType:
-        return OrgDepartment.objects.get(id=id)
+#### Deparments
 
     @strawberry.field
-    def get_org_position(self, id: strawberry.ID) -> OrgPositionType:
-        return OrgPosition.objects.get(id=id)
+    def subdepartments(id:int) -> List[OrgDepartmentType]:
+        return resolve_subdepartments(id)
 
-    # Add more queries for other models as needed
+   
+    @strawberry.field
+    def departmentById(id:int) -> OrgDepartmentType:
+        
+        return resolve_department_hierarchy(id)
+    
 
-# Create your schema
-schema = strawberry.Schema(query=Query)
+
+### Positions
+
+    @strawberry.field
+    def positionsList(self) -> List[OrgPositionType]:   
+        return resolve_all_positions()
+    
+    @strawberry.field
+    def positionById(self, id:int) -> OrgPositionType:   
+        return resolve_position_by_id(id)
+    
+schema = strawberry.Schema(query=Query, extensions=[QueryDepthLimiter(4)],)

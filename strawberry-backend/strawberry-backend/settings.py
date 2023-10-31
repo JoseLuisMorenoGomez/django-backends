@@ -92,22 +92,11 @@ DATABASES = {
     'NAME': 'org',
     'USER': 'dbadmin',
     'PASSWORD': '0cmj3r3z!',
-    'HOST': 'backend.pepelui.es',
+    'HOST': 'strawberry.pepelui.es',
     'PORT': '54320'
 
 },
 
-'org': {
-    'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    'OPTIONS': {
-        'options': '-c search_path=org,public'
-    },
-    'NAME': 'org',
-    'USER': 'dbadmin',
-    'PASSWORD': '0cmj3r3z!',
-    'HOST': 'backend.pepelui.es',
-    'PORT': '54320'
-},
 }
 
 # Password validation
@@ -182,4 +171,11 @@ CORS_ALLOW_METHODS = (
     "PUT",
 )
 
-SESSION_COOKIE_DOMAIN="backend.pepelui.es"
+#SESSION_COOKIE_DOMAIN="strawberry.pepelui.es"
+
+STRAWBERRY_DJANGO = {
+    "FIELD_DESCRIPTION_FROM_HELP_TEXT": True,
+    "TYPE_DESCRIPTION_FROM_MODEL_DOCSTRING": True,
+}
+
+DJANGO_ALLOW_ASYNC_UNSAFE: True

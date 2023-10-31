@@ -88,7 +88,7 @@ DATABASES = {
     'NAME': 'org',
     'USER': 'dbadmin',
     'PASSWORD': '0cmj3r3z!',
-    'HOST': 'backend.pepelui.es',
+    'HOST': 'graphene.pepelui.es',
     'PORT': '54320'
 
 },
@@ -101,7 +101,7 @@ DATABASES = {
     'NAME': 'org',
     'USER': 'dbadmin',
     'PASSWORD': '0cmj3r3z!',
-    'HOST': 'backend.pepelui.es',
+    'HOST': 'graphene.pepelui.es',
     'PORT': '54320'
 },
 }
@@ -161,11 +161,10 @@ GRAPHENE = {
 CSRF_TRUSTED_ORIGINS = ["https://frontend.pepelui.es"]
 
 
-# CORS_ALLOW_ALL_ORIGINS = True
-# CORS_ALLOWED_ORIGIN_REGEXES = [r"^https://\w+\.domain\.com$",]
+CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOWED_ORIGIN_REGEXES = [r"^https://\w+\.pepelui\.es$",]
 # CORS_URLS_REGEX = r"^/graphql/.*$"
-
-CORS_ALLOWED_ORIGINS = ["https://frontend.pepelui.es"]
+# CORS_ALLOWED_ORIGINS = ["https://graphene.pepelui.es"]
 CORS_ALLOW_METHODS = (
     "DELETE",
     "GET",
@@ -175,4 +174,4 @@ CORS_ALLOW_METHODS = (
     "PUT",
 )
 
-SESSION_COOKIE_DOMAIN="backend.pepelui.es"
+SESSION_COOKIE_DOMAIN="graphene.pepelui.es"

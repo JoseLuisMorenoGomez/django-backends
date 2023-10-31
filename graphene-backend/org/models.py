@@ -11,9 +11,9 @@ class OrgDepartment(models.Model):
     id = models.BigIntegerField(primary_key=True)
     name = models.CharField(max_length=255)
     parent = models.ForeignKey('self', models.DO_NOTHING, blank=True, null=True)
-    responsible_position = models.ForeignKey('OrgPosition', models.DO_NOTHING, blank=True, null=True)
-    id_category = models.IntegerField(blank=True, null=True)
-
+    manager_position = models.ForeignKey('OrgPosition', models.DO_NOTHING, blank=True, null=True)
+    category = models.ForeignKey('OrgDeptCategory', models.DO_NOTHING, blank=True, null=True)
+ 
     class Meta:
         managed = False
         db_table = 'org_department'

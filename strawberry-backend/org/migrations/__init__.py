@@ -14,4 +14,4 @@ except ModuleNotFoundError:
             raise AttributeError(
                 f"Attempted import of {import_symbol} failed. Make sure to install the"
                 "'strawberry-graphql-django' package to use the Strawberry Django "
-                "extension API."
+                "extension API.")
