@@ -1,15 +1,6 @@
-# This is an auto-generated Django model module.
-# You'll have to do the following manually to clean this up:
-#   * Rearrange models' order
-#   * Make sure each model has one field with primary_key=True
-#   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
-#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
-# Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
-
-
 class OrgPersonnel(models.Model):
-   id = models-BigAutoField(primary_key=True)
+    id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=100, blank=True, null=True)
     current_position = models.ForeignKey('OrgPosition', models.DO_NOTHING, blank=True, null=True)
     image_url = models.CharField(max_length=255, blank=True, null=True)
@@ -18,7 +9,6 @@ class OrgPersonnel(models.Model):
     class Meta:
         managed = False
         db_table = 'org-personnel'
-
 
 class OrgDepartment(models.Model):
     id = models.BigAutoField(primary_key=True)
@@ -45,7 +35,7 @@ class OrgDeptCategory(models.Model):
 
 
 class OrgPersonnelGroup(models.Model):
-    id = models.BigAutoFieldField(primary_key=True)
+    id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=50, blank=True, null=True)
     code = models.CharField(max_length=5, blank=True, null=True)
 
@@ -83,7 +73,7 @@ class OrgPosition(models.Model):
 
 
 class OrgProvisionProcedure(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=100, blank=True, null=True)
     code = models.CharField(max_length=5, blank=True, null=True)
 
@@ -93,7 +83,7 @@ class OrgProvisionProcedure(models.Model):
 
 
 class OrgQualifications(models.Model):
-    id = models.IntegerField(unique=True, blank=True, null=True)
+    id = models.BigAutoField(primary_key=True, blank=True, null=False)
     name = models.CharField(max_length=100, blank=True, null=True)
     code = models.CharField(max_length=5, blank=True, null=True)
 
@@ -103,7 +93,7 @@ class OrgQualifications(models.Model):
 
 
 class OrgRemunerationItem(models.Model):
-    id = models.IntegerField(unique=True, blank=True, null=True)
+    id = models.BigAutoField(primary_key=True, blank=True, null=False)
     name = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
@@ -112,8 +102,8 @@ class OrgRemunerationItem(models.Model):
 
 
 class OrgSalaryStructure(models.Model):
-    id = models.IntegerField(primary_key=True)
-    position_id = models.IntegerField(unique=True)
+    id = models.BigAutoField(primary_key=True)
+    position_id = models.BigIntegerField(unique=True)
     remuneration_item = models.ForeignKey(OrgRemunerationItem, models.DO_NOTHING, blank=True, null=True)
     from_date = models.DateField(blank=True, null=True)
     to_date = models.DateField(blank=True, null=True)
@@ -123,9 +113,8 @@ class OrgSalaryStructure(models.Model):
         managed = False
         db_table = 'org_salary_structure'
 
-
 class OrgScale(models.Model):
-   id = models-BigAutoField(primary_key=True)
+    id = models.BigAutoField(primary_key=True)
     code = models.CharField(max_length=5)
     description = models.CharField(max_length=60)
 
@@ -135,7 +124,7 @@ class OrgScale(models.Model):
 
 
 class OrgTypeofPersonnel(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
