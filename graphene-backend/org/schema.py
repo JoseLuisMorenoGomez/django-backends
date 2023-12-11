@@ -169,7 +169,7 @@ class Query(graphene.ObjectType):
             department = OrgDepartment.objects.get(pk=department_id)
  
             # Get the manager position for the specified department
-            manager_position = OrgPosition.objects.get(manager_position__isnull=False, orgdepartment=department)
+            manager_position = OrgPosition.objects.get(id__isnull=False, orgdepartment=department)
             
             # Get the personnel occupying the manager position
             manager_personnel = OrgPersonnel.objects.get(current_position=manager_position)
