@@ -200,4 +200,4 @@ CORS_ALLOW_METHODS = (
 SESSION_COOKIE_DOMAIN="graphene.pepelui.es"
 
 WAGTAIL_SITE_NAME = 'Observatorio Ciudadano de Jerez de la Frontera'
-WAGTAILADMIN_BASE_URL = 'https://cms.ocmjerez.org'
+WAGTAILADMIN_BASE_URL = 'https://graphene.pepelui.es'
