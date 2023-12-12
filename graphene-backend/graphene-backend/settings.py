@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     
     'org',
     'graphene_django',
-    'wagtail.core',
+    
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
     'wagtail.embeds',
