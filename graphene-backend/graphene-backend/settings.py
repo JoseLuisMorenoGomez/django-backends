@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-u6-5o-0*cf#zjfu&%&4h^il8_$d@+)u*-fg=7)1ayj#e+_x%s0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['graphene.pepelui.es', '194.62.96.170']
+ALLOWED_HOSTS = ['graphene.pepelui.es', '194.62.96.170', '127.0.0.1', 'localhost']
 
 
 # Application definition
