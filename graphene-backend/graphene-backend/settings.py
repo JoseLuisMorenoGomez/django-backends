@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-u6-5o-0*cf#zjfu&%&4h^il8_$d@+)u*-fg=7)1ayj#e+_x%s0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['graphene.pepelui.es', '194.62.96.170', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['backend.ocmjerez.org', '194.62.96.170', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -106,7 +106,7 @@ DATABASES = {
     'NAME': 'org',
     'USER': 'dbadmin',
     'PASSWORD': '0cmj3r3z!',
-    'HOST': 'graphene.pepelui.es',
+    'HOST': 'backend.ocmjerez.org',
     'PORT': '54320'
 
 },
@@ -119,7 +119,7 @@ DATABASES = {
     'NAME': 'org',
     'USER': 'dbadmin',
     'PASSWORD': '0cmj3r3z!',
-    'HOST': 'graphene.pepelui.es',
+    'HOST': 'backend.ocmjerez.org',
     'PORT': '54320'
 },
 }
@@ -187,7 +187,7 @@ CSRF_TRUSTED_ORIGINS = ["https://frontend.pepelui.es"]
 CORS_ALLOW_ALL_ORIGINS = True
 # CORS_ALLOWED_ORIGIN_REGEXES = [r"^https://\w+\.pepelui\.es$",]
 # CORS_URLS_REGEX = r"^/graphql/.*$"
-# CORS_ALLOWED_ORIGINS = ["https://graphene.pepelui.es"]
+# CORS_ALLOWED_ORIGINS = ["https://backend.ocmjerez.org"]
 CORS_ALLOW_METHODS = (
     "DELETE",
     "GET",
@@ -197,7 +197,7 @@ CORS_ALLOW_METHODS = (
     "PUT",
 )
 
-SESSION_COOKIE_DOMAIN="graphene.pepelui.es"
+SESSION_COOKIE_DOMAIN="backend.ocmjerez.org"
 
 WAGTAIL_SITE_NAME = 'Observatorio Ciudadano de Jerez de la Frontera'
-WAGTAILADMIN_BASE_URL = 'https://graphene.pepelui.es'
+WAGTAILADMIN_BASE_URL = 'https://backend.ocmjerez.org'
