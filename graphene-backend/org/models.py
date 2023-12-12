@@ -6,6 +6,9 @@ class OrgPersonnel(models.Model):
     image_url = models.CharField(max_length=255, blank=True, null=True)
     code = models.CharField(max_length=10, blank=True, null=True)
 
+    def __str__(self):
+        return self.name;
+           
     class Meta:
         managed = False
         db_table = 'org-personnel'
@@ -18,6 +21,9 @@ class OrgDepartment(models.Model):
     category = models.ForeignKey('OrgDeptCategory', models.DO_NOTHING, blank=True, null=True)
     valid_from = models.DateField(blank=True, null=True)
     valid_to = models.DateField(blank=True, null=True)
+    
+    def __str__(self):
+        return self.name;
 
     class Meta:
         managed = False
@@ -28,6 +34,9 @@ class OrgDeptCategory(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=255)
     is_implemented = models.BooleanField()
+    
+    def __str__(self):
+        return self.name;
 
     class Meta:
         managed = False
@@ -38,7 +47,9 @@ class OrgPersonnelGroup(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=50, blank=True, null=True)
     code = models.CharField(max_length=5, blank=True, null=True)
-
+    
+    def __str__(self):
+        return self.code + "-" + self.name
     class Meta:
         managed = False
         db_table = 'org_personnel_group'
@@ -47,7 +58,9 @@ class OrgPersonnelGroup(models.Model):
 class OrgPosCategory(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=255)
-
+    
+    def __str__(self):
+        return self.name; 
     class Meta:
         managed = False
         db_table = 'org_pos_category'
@@ -65,7 +78,9 @@ class OrgPosition(models.Model):
     personnel_group = models.ForeignKey(OrgPersonnelGroup, models.DO_NOTHING)
     qualification = models.ForeignKey('OrgQualifications', models.DO_NOTHING, db_comment='universitary degree or professional skills requiered for the position')
     code = models.CharField(max_length=5, blank=True, null=True)
-
+    
+    def __str__(self):
+        return self.name;
     class Meta:
         managed = False
         db_table = 'org_position'
@@ -76,7 +91,9 @@ class OrgProvisionProcedure(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=100, blank=True, null=True)
     code = models.CharField(max_length=5, blank=True, null=True)
-
+    
+    def __str__(self):
+        return self.code + "-" + self.name
     class Meta:
         managed = False
         db_table = 'org_provision_procedure'
@@ -86,7 +103,9 @@ class OrgQualifications(models.Model):
     id = models.BigAutoField(primary_key=True, blank=True, null=False)
     name = models.CharField(max_length=100, blank=True, null=True)
     code = models.CharField(max_length=5, blank=True, null=True)
-
+    
+    def __str__(self):
+        return self.code + "-" + self.name 
     class Meta:
         managed = False
         db_table = 'org_qualifications'
@@ -95,7 +114,9 @@ class OrgQualifications(models.Model):
 class OrgRemunerationItem(models.Model):
     id = models.BigAutoField(primary_key=True, blank=True, null=False)
     name = models.CharField(max_length=100, blank=True, null=True)
-
+    
+    def __str__(self):
+        return self.name 
     class Meta:
         managed = False
         db_table = 'org_remuneration_item'
@@ -108,7 +129,9 @@ class OrgSalaryStructure(models.Model):
     from_date = models.DateField(blank=True, null=True)
     to_date = models.DateField(blank=True, null=True)
     amount = models.IntegerField(blank=True, null=True)
-
+     
+    def __str__(self):
+        return self.id
     class Meta:
         managed = False
         db_table = 'org_salary_structure'
@@ -117,7 +140,9 @@ class OrgScale(models.Model):
     id = models.BigAutoField(primary_key=True)
     code = models.CharField(max_length=5)
     description = models.CharField(max_length=60)
-
+    
+    def __str__(self):
+        return self.code + "-" + self.name 
     class Meta:
         managed = False
         db_table = 'org_scale'
@@ -127,6 +152,8 @@ class OrgTypeofPersonnel(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=50, blank=True, null=True)
 
+    def __str__(self):
+        return self.name
     class Meta:
         managed = False
         db_table = 'org_typeof_personnel'
