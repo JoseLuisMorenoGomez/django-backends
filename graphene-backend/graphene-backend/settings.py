@@ -181,11 +181,11 @@ GRAPHENE = {
     'SCHEMA': 'org.schema.schema'
 }
 
-CSRF_TRUSTED_ORIGINS = ["https://frontend.pepelui.es"]
+CSRF_TRUSTED_ORIGINS = ["https://frontend.pepelui.es", "https://backend.ocmjerez.org"]
 
 
 CORS_ALLOW_ALL_ORIGINS = True
-# CORS_ALLOWED_ORIGIN_REGEXES = [r"^https://\w+\.pepelui\.es$",]
+CORS_ALLOWED_ORIGIN_REGEXES = [r"^https://\w+\.ocmjerez\.org$",]
 # CORS_URLS_REGEX = r"^/graphql/.*$"
 # CORS_ALLOWED_ORIGINS = ["https://backend.ocmjerez.org"]
 CORS_ALLOW_METHODS = (
@@ -201,3 +201,4 @@ SESSION_COOKIE_DOMAIN="backend.ocmjerez.org"
 
 WAGTAIL_SITE_NAME = 'Observatorio Ciudadano de Jerez de la Frontera'
 WAGTAILADMIN_BASE_URL = 'https://backend.ocmjerez.org'
+ 
