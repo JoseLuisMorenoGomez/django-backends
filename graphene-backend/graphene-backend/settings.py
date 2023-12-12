@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     
     'org',
     'graphene_django',
-    
+    'wagtail.core',
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
     'wagtail.embeds',
@@ -178,7 +178,7 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 GRAPHENE = {
-    'SCHEMA': 'org.schema.schema'
+    'SCHEMA': 'graphene-backend.schema.schema'
 }
 
 CSRF_TRUSTED_ORIGINS = ["https://frontend.pepelui.es", "https://backend.ocmjerez.org"]
