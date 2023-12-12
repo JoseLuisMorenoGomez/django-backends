@@ -199,6 +199,27 @@ CORS_ALLOW_METHODS = (
 
 SESSION_COOKIE_DOMAIN="backend.ocmjerez.org"
 
+
+
+# WAGTAIL SETTINGS
+
 WAGTAIL_SITE_NAME = 'Observatorio Ciudadano de Jerez de la Frontera'
 WAGTAILADMIN_BASE_URL = 'https://backend.ocmjerez.org'
+
+# Replace the search backend
+#WAGTAILSEARCH_BACKENDS = {
+#  'default': {
+#    'BACKEND': 'wagtail.search.backends.elasticsearch8',
+#    'INDEX': 'myapp'
+#  }
+#}
+
+# Wagtail email notifications from address
+# WAGTAILADMIN_NOTIFICATION_FROM_EMAIL = 'wagtail@myhost.io'
+
+# Wagtail email notification format
+# WAGTAILADMIN_NOTIFICATION_USE_HTML = True
+
+# Reverse the default case-sensitive handling of tags
+TAGGIT_CASE_INSENSITIVE = True
  
