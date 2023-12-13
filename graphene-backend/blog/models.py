@@ -1,4 +1,4 @@
-# Taken From https://docs.wagtail.org/en/v5.2.2/topics/pages.html
+# Taken From 
 
 from django.db import models
 
@@ -9,6 +9,13 @@ from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel
 from wagtail.search import index
 
+
+class BlogIndex(Page):
+    intro = RichTextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('intro', classname="full")
+    ]
 
 class BlogPage(Page):
 
