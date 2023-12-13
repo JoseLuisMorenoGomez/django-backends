@@ -1,35 +1,64 @@
-# Taken From http://docs.wagtail.io/en/v1.9/getting_started/tutorial.html
-
-from __future__ import unicode_literals
+# Taken From https://docs.wagtail.org/en/v5.2.2/topics/pages.html
 
 from django.db import models
 
-# Create your models here.
-from wagtail.models import Page
+from modelcluster.fields import ParentalKey
+
+from wagtail.models import Page, Orderable
 from wagtail.fields import RichTextField
-from wagtail.admin.panels import FieldPanel
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel
 from wagtail.search import index
 
 
-class BlogIndexPage(Page):
-    intro = RichTextField(blank=True)
-
-    content_panels = Page.content_panels + [
-        FieldPanel('intro', classname="full")
-    ]
-
 class BlogPage(Page):
+
+    # Database fields
+
+    body = RichTextField()
     date = models.DateField("Post date")
-    intro = models.CharField(max_length=250)
-    body = RichTextField(blank=True)
+    feed_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+
+    # Search index configuration
 
     search_fields = Page.search_fields + [
-        index.SearchField('intro'),
         index.SearchField('body'),
+        index.FilterField('date'),
     ]
+
+
+    # Editor panels configuration
 
     content_panels = Page.content_panels + [
         FieldPanel('date'),
-        FieldPanel('intro'),
-        FieldPanel('body', classname="full"),
+        FieldPanel('body'),
+        InlinePanel('related_links', heading="Related links", label="Related link"),
+    ]
+
+    promote_panels = [
+        MultiFieldPanel(Page.promote_panels, "Common page configuration"),
+        FieldPanel('feed_image'),
+    ]
+
+
+    # Parent page / subpage type rules
+
+    parent_page_types = ['blog.BlogIndex']
+    subpage_types = []
+
+
+class BlogPageRelatedLink(Orderable):
+    page = ParentalKey(BlogPage, on_delete=models.CASCADE, related_name='related_links')
+    name = models.CharField(max_length=255)
+    url = models.URLField()
+
+    panels = [
+        FieldPanel('name'),
+        FieldPanel('url'),
     ]
