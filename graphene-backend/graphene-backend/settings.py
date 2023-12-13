@@ -37,11 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "corsheaders",
-    
-    'org',
+    'corsheaders',
     'graphene_django',
     
+    
+    'wagtail',
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
     'wagtail.embeds',
@@ -52,10 +52,14 @@ INSTALLED_APPS = [
     'wagtail.images',
     'wagtail.search',
     'wagtail.admin',
-    'wagtail',
-
+       
     'modelcluster',
     'taggit',
+
+    'org',
+    'blog',
+
+    
 ]
 
 MIDDLEWARE = [
