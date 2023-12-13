@@ -1,28 +1,35 @@
 from django.db import models
 
+# Add these:
 from wagtail.models import Page
-from wagtail.fields import StreamField, RichTextField
-from wagtail import blocks
+from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel
-from wagtail.images.blocks import ImageChooserBlock
+from wagtail.search import index
 
 class BlogIndexPage(Page):
     intro = RichTextField(blank=True)
+
     content_panels = Page.content_panels + [
         FieldPanel('intro')
     ]
 
+
+
+# Keep the definition of BlogIndexPage model, and add the BlogPage model:
+
 class BlogPage(Page):
-    author = models.CharField(max_length=255)
     date = models.DateField("Post date")
-    body = StreamField([
-        ('heading', blocks.CharBlock(form_classname="title")),
-        ('paragraph', blocks.RichTextBlock()),
-        ('image', ImageChooserBlock()),
-    ], use_json_field=True)
+    intro = models.CharField(max_length=250)
+    body = RichTextField(blank=True)
+
+    search_fields = Page.search_fields + [
+        index.SearchField('intro'),
+        index.SearchField('body'),
+    ]
 
     content_panels = Page.content_panels + [
-        FieldPanel('author'),
         FieldPanel('date'),
+        FieldPanel('intro'),
         FieldPanel('body'),
-    ]
+    ]    
+    
