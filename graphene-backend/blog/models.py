@@ -23,7 +23,7 @@ class BlogPage(Page):
 
     body = RichTextField()
     date = models.DateField("Post date")
-    feed_image = models.ForeignKey(
+    feed_image_id = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
         blank=True,
