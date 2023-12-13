@@ -8,7 +8,7 @@ from django.db import models
 class ArticleNode(DjangoObjectType):
     class Meta:
         model = BlogPage
-        only_fields = ['id', 'title', 'date', 'intro', 'body']
+        only_fields = ['title', 'date', 'intro', 'body']
 
 
 class Query(graphene.ObjectType):
