@@ -8,7 +8,7 @@ from wagtail.models import Page, Orderable
 from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel
 from wagtail.search import index
-
+from wagtail.images.models import Image
 
 class BlogIndex(Page):
     intro = RichTextField(blank=True)
@@ -22,8 +22,9 @@ class BlogPage(Page):
     # Database fields
 
     body = RichTextField()
+    
     date = models.DateField("Post date")
-    feed_image_id = models.ForeignKey(
+    feed_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
         blank=True,
