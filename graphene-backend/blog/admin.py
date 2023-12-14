@@ -6,7 +6,7 @@ from .models import BlogPage
 
 class BlogPageAdmin(ModelAdmin):
     model = BlogPage
-    menu_label = 'Páginas de Blog'
+    menu_label = 'Artíclos'
     menu_icon = 'Blog-line'
     menu_order = 200
     add_to_settings_menu = False
