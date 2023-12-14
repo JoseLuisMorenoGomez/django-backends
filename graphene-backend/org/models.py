@@ -157,6 +157,5 @@ class OrgTypeofPersonnel(models.Model):
     class Meta:
         managed = False
         db_table = 'org_typeof_personnel'
-        db_table_comment = 'Funcionario, Laboral, Eventual, Directivo, Funcionario con habilitación especial'
-
+        
 
