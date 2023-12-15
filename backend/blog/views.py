@@ -5,7 +5,7 @@ from django.http import Http404
 from django.views.generic.list import ListView
 from django.shortcuts import redirect
 
-from wagtail.contrib.modeladmin.views import CreateView
+from  wagtail_modeladmin.views import CreateView
 from wagtail.admin import messages
 from wagtail.search.models import Query
 

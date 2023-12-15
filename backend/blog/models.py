@@ -162,7 +162,7 @@ class BlogPageTag(TaggedItemBase):
 
 
 class BlogListingPage(MetadataPageMixin, Page):
-    parent_page_types = ["home.HomePage"]
+    #parent_page_types = ["home.HomePage"]
     subpage_types = ["blog.BlogPostPage"]
     max_count = 1
 

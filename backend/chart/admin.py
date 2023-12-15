@@ -1,6 +1,6 @@
 # admin.py
 
-from wagtail.contrib.modeladmin.options import ModelAdmin, modeladmin_register
+from  wagtail_modeladmin.options import ModelAdmin, modeladmin_register
 from wagtail.snippets.models import register_snippet
 from .models import Chart, ChartPage
 
