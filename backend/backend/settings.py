@@ -109,7 +109,7 @@ DATABASES = {
     'OPTIONS': {
         'options': '-c search_path=django,public'
     },
-    'NAME': 'org',
+    'NAME': 'development',
     'USER': 'dbadmin',
     'PASSWORD': '0cmj3r3z!',
     'HOST': 'backend.ocmjerez.org',
@@ -117,12 +117,12 @@ DATABASES = {
 
 },
 
-'org': {
+'produccion': {
     'ENGINE': 'django.db.backends.postgresql_psycopg2',
     'OPTIONS': {
         'options': '-c search_path=org,public'
     },
-    'NAME': 'org',
+    'NAME': 'produccion',
     'USER': 'dbadmin',
     'PASSWORD': '0cmj3r3z!',
     'HOST': 'backend.ocmjerez.org',
