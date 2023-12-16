@@ -57,9 +57,9 @@ INSTALLED_APPS = [
     'modelcluster',
     'taggit',
 
- #   'org',
+    'org',
     'blog',
- #   'chart',
+    'chart',
 
     
 ]
