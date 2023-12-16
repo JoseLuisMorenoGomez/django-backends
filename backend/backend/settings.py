@@ -59,7 +59,7 @@ INSTALLED_APPS = [
 
     'org',
     'blog',
-    'chart',
+    #'chart',
 
     
 ]

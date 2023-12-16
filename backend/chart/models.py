@@ -1,20 +1,20 @@
 # models.py
 
 from django.db import models
-from wagtail.blocks import blocks as wagtail_blocks
+from wagtail.blocks import PageChooserBlock,RichTextBlock
 from wagtail.admin.panels import  FieldPanel, PageChooserPanel, MultiFieldPanel 
 from wagtail.snippets.models import register_snippet
 from wagtail.documents.blocks  import DocumentChooserBlock
 from wagtail import StreamField 
 
 
-class CustomPageChooserBlock(wagtail_blocks.PageChooserBlock):
+class CustomPageChooserBlock(PageChooserBlock):
     class Meta:
         template = 'blocks/custom_page_chooser_block.html'
 
     def get_api_fields(self):
         return [
-            wagtail_blocks.FieldPanel('data_graphql_query'),
+            FieldPanel('data_graphql_query'),
         ]
 
     def get_csv_fields(self):
@@ -72,7 +72,7 @@ class Chart(models.Model):
 
 class ChartPage(Page):
     body = StreamField([
-        ('paragraph', wagtail_blocks.RichTextBlock()),
+        ('paragraph', RichTextBlock()),
         ('chart', CustomPageChooserBlock(target_model=Chart)),
     ])
 
@@ -81,7 +81,7 @@ class ChartPage(Page):
     created_by = models.ForeignKey(User, null=True, blank=True, editable=False, on_delete=models.SET_NULL)
 
     content_panels = Page.content_panels + [
-        StreamFieldPanel('body'),
+        FieldPanel('body'),
         FieldPanel('explanation'),
     ]
 
