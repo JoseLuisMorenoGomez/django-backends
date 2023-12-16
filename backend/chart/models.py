@@ -6,7 +6,7 @@ from wagtail.admin.panels import  FieldPanel, PageChooserPanel, MultiFieldPanel
 from wagtail.snippets.models import register_snippet
 from wagtail.documents.blocks  import DocumentChooserBlock
 from wagtail import StreamField 
-from wagtail.
+
 
 class CustomPageChooserBlock(wagtail_blocks.PageChooserBlock):
     class Meta:
