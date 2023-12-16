@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+
+{% load static wagtailimages_tags wagtailcore_tags page_tags wagtailmetadata_tags %}
+
+{% block meta_tags %}{% meta_tags %}{% endblock %}
+
+{% block main_css %}
+    {{ block.super }}
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+{% endblock main_css %}
+
+{% block content %}
+
+    <div id="st-container" class="st-container st-effect">
+
+        {% include "blog/blocks/blog_sidebar.html" %}
+
+        <div class="st-pusher">
+            <div class="st-content">
+                <div class="st-content-inner">
+
+                    {% block banner %}
+                        <section class="section-banner">
+                            <div class="container-sm t-center">
+                                <h1>{{ page.title }}</h1>
+                                <p class="body_extra_large">
+                                    {{ page.page_caption }}
+                                    {% if request.path == "/blog" %}
+                                        <a class="rss" href="{% url 'blog_feed_rss' %}"
+                                            title="RSS feed"
+                                            target="_blank">
+                                            <i class="fa fa-rss"></i>
+                                        </a>
+                                    {% endif %}
+                                </p>
+                            </div>
+
+                            <div class="container-sm t-center">
+                                <div id="st-trigger-effects" class="column">
+                                    <button class="st-btn" id="st-button" data-effect="st-effect">
+                                        <img src="{% static 'img/ckan-logo.png' %}"/>
+                                    </button>
+                                </div>
+                            </div>
+                            <nav class="social-sidebar">
+                                <ul>
+                                    <li>
+                                        <a href="https://twitter.com/intent/tweet?text=CKAN:%20News,%20industry%20reports,%20and%20announcements&url={{ request.build_absolute_uri }}" target="_blank" rel="noopener">
+                                            <i class="fa fa-twitter"></i>
+                                            &nbsp;&nbsp;Twitter
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" rel="noopener">
+                                            <i class="fa fa-facebook"></i>
+                                            &nbsp;&nbsp;Facebook
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}" target="_blank" rel="noopener">
+                                            <i class="fa fa-linkedin"></i>
+                                            &nbsp;&nbsp;Linkedin
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+
+                            <div class="container-md">
+                                <div class="blog-subscribe">
+                                    <div class="blog-subscribe-content">
+                                        <p class="title">Newsletter</p>
+                                        <h2 class="h2">Ready to stay ahead of the curve?</h2>
+                                        <p>Join our CKAN Monthly Newsletter and get the inside scoop!</p>
+                                        <p>From new developmetns to upcoming events and everything in between, you'll find it all here!</p>
+                                        <div class="blog-subscribe-form">
+                                            <form action="#" id="blog_subscribe_form">
+                                                {% include "snippets/iframe.html" %}
+                                                <div class="row">
+                                                    <input type="text" id="blog_subscribe_name" name="name" placeholder="your name" autocomplete="off"/>
+                                                    <input type="text" id="blog_subscribe_email" name="email" placeholder="your@email.com" autocomplete="off"/>
+                                                    <div class="g-recaptcha"
+                                                        data-sitekey="{{ recaptcha_sitekey }}"
+                                                        data-size="invisible">
+                                                    </div>
+                                                    <input type="submit" value="Subscribe" class="btn"/>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container-md">
+                                {% block featured %}
+                                    {% if featured_post %}
+                                        {% include "../snippets/featured_blog_post_block.html" with post=featured_post %}
+                                    {% endif %}
+                                {% endblock %}
+                            </div>
+                        </section>
+                    {% endblock %}
+
+                    <div class="ground">
+                        <div class="container-md">
+                            {% block upcoming %}
+                                {% for post in posts %}
+                                    {% include "../snippets/blog_post_block.html" with post=post %}
+                                {% endfor %}
+                            {% endblock %}
+                        </div>
+                            {% block past %}
+                            {% endblock %}
+                        </div>
+                        <div class="pagination-holder indent">
+                            {% block pagination %}
+                            <ul class="pagination">
+                                {% if posts.paginator.num_pages > 1 %}
+                                    {% if posts.has_previous %}
+                                        <li class="prev">
+                                            <a href="?page={{ posts.previous_page_number }}">
+                                                <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M2.00009 0.855957L0.590088 2.26596L5.17009 6.85596L0.590088 11.446L2.00009 12.856L8.00009 6.85596L2.00009 0.855957Z" fill="#0000EE"/>
+                                                </svg>
+                                                Previous
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="?page=1">...</a>
+                                        </li>
+                                    {% endif %}
+                                    {% for page_num in posts.paginator.page_range %}
+                                        {% if page_num == posts.number %}
+                                            <li><a href="?page={{ page_num }}" style="font-weight: bold;">{{ page_num }}</a></li>
+                                        {% elif page_num > posts.number|add:'-3' and page_num < posts.number|add:'3' %}
+                                            <li><a href="?page={{ page_num }}">{{ page_num }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if posts.has_next %}
+                                        <li>
+                                            <a href="?page={{posts.paginator.num_pages}}">...</a>
+                                        </li>
+                                        <li class="next">
+                                            <a href="?page={{ posts.next_page_number }}">
+                                                Next
+                                                <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M2.00009 0.855957L0.590088 2.26596L5.17009 6.85596L0.590088 11.446L2.00009 12.856L8.00009 6.85596L2.00009 0.855957Z" fill="#0000EE"/>
+                                                </svg>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                {% endif %}
+                            </ul>
+                            {% endblock %}
+                        </div>
+                            {% include "../snippets/connect_with_ckan_block.html" %}
+                        <div class="separator alt"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="{% static 'js/sidebar.js' %}"></script>
+
+{% endblock content %}
