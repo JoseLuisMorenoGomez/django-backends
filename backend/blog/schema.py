@@ -1,13 +1,13 @@
 from __future__ import unicode_literals
 import graphene
 from graphene_django import DjangoObjectType
-from blog.models import BlogPage
+from blog.models import BlogPostPage
 
 from django.db import models
 
 class ArticleNode(DjangoObjectType):
     class Meta:
-        model = BlogPage
+        model = BlogPostPage
         only_fields = ['title', 'date', 'intro', 'body']
 
 
@@ -16,6 +16,6 @@ class Query(graphene.ObjectType):
 
     @graphene.resolve_only_args
     def resolve_articles(self):
-        return BlogPage.objects.live()
+        return BlogPostPage.objects.live()
 
 schema = graphene.Schema(query=Query)
