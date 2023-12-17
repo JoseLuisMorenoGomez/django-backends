@@ -37,26 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'graphene_django',
+    'org',
 
-    'wagtail',
-    'wagtail.contrib.forms',
-    'wagtail_modeladmin',
-    'wagtail.contrib.redirects',
-    'wagtail.embeds',
-    'wagtail.sites',
-    'wagtail.users',
-    'wagtail.snippets',
-    'wagtail.documents',
-    'wagtail.images',
-    'wagtail.search',
-    'wagtail.admin',
-
-    'modelcluster',
-    'taggit',
-
-    # 'org',
-      'blog',
-    # 'chart',
+    
 
 ]
 
